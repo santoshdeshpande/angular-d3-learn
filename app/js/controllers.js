@@ -40,7 +40,9 @@ define(['angular', 'services'], function (angular) {
 			$scope.lines = linesData($scope.numberOfLines);
 
 			$scope.updateLineCount = function () {
-			 	alert("implement me");
+                console.log($scope.numberOfLines);
+                $scope.lines = linesData($scope.numberOfLines);
 			}
+
 		}]);
 });

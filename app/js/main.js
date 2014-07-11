@@ -15,13 +15,15 @@ require.config({
 	    domReady :       '../bower_components/requirejs-domready/domReady',
 		jquery:          '../bower_components/jquery/dist/jquery',
 		lodash:          '../bower_components/lodash/dist/lodash.min',
-		text:            '../bower_components/requirejs-text/text'
+		text:            '../bower_components/requirejs-text/text',
+		foundation:      '../bower_components/foundation/js/foundation/foundation',
+		foundation_slider:'../bower_components/foundation/js/foundation/foundation.slider'
 	},
 	shim: {
 		'angular' : { 
 			deps : [
 				'domReady',
-        		'jquery'
+        		'foundation_slider',
       		],
 			exports : 'angular' 
 		},
@@ -32,18 +34,28 @@ require.config({
 		},
 		'angularUIRouter' : {
       		deps : [
-        		'angular'
+        		'angular',
       		]
 		},
 		 d3 : {
       		exports : 'd3'
 		},
     	jquery : {
-      		exports : '$'
+      		exports : '$',
 		},
 		lodash : {
 		  exports : '_'
-	    }
+	    },
+        foundation_slider: {
+            deps: [
+                'foundation'
+            ]
+        },
+        foundation: {
+            deps: [
+                'jquery'
+            ]
+        }
 	},
 	priority: [
 		'angular'

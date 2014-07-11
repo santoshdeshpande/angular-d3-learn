@@ -45,46 +45,66 @@ define([
           if (renderTimeout) $timeout.cancel(renderTimeout);
 
           renderTimeout = $timeout(function () {
-            var data = newLines[0];
-
-            graph.xScale.domain([
-              d3.min(data, function (d) {
-                return d[0];
-              }),
-              d3.max(data, function (d) {
-                return d[0];
-              })
-            ]);
-            graph.yScale.domain([
-              d3.min(data, function (d) {
-                return d[1];
-              }),
-              d3.max(data, function (d) {
-                return d[1];
-              })
-            ]);
-
-            // create left yAxis
-            var yAxisLeft = d3.svg.axis().scale(graph.yScale).orient('left').tickValues(graph.yScale.ticks());
-            // Add the y-axis
-            graph.append('g')
-              .attr('class', 'y axis')
-              .call(yAxisLeft)
-              .attr('transform', 'translate(-10,0)');
-
-            // create a line function that can convert data[] into x and y points
-            var line = d3.svg.line()
-              .x(function (d) {
-                return graph.xScale(d[0]);
-              })
-              .y(function (d) {
-                return graph.yScale(d[1]);
+              var data = newLines;
+              var colors = d3.scale.category20();
+              var min = d3.max(data, function (d) {
+                  return d3.max(d, function(dd){
+                      return dd[0];
+                  });
               });
+              console.log(min);
+                  graph.xScale.domain([
+                  d3.min(data, function (d) {
+                      return d3.min(d, function(dd) {
+                          return dd[0];
+                      });
+                  }),
+                  d3.max(data, function (d) {
+                      return d3.max(d, function(dd) {
+                          return dd[0];
+                      });
+                  })
+              ]);
+              graph.yScale.domain([
+                  d3.min(data, function (d) {
+                      return d3.min(d, function(dd) {
+                          return dd[1];
+                      });
+                  }),
+                  d3.max(data, function (d) {
+                      return d3.max(d, function(dd) {
+                          return dd[1];
+                      });
 
-            // add line
-            graph.append('path')
-              .attr('d', line(data))
-              .attr('stroke', 'red');
+                  })
+              ]);
+
+              // create left yAxis
+              var yAxisLeft = d3.svg.axis().scale(graph.yScale).orient('left').tickValues(graph.yScale.ticks());
+              // Add the y-axis
+              graph.append('g')
+                  .attr('class', 'y axis')
+                  .call(yAxisLeft)
+                  .attr('transform', 'translate(-10,0)');
+
+            angular.forEach(newLines, function(data, i) {
+
+                console.log(data);
+
+                // create a line function that can convert data[] into x and y points
+                var line = d3.svg.line()
+                    .x(function (d) {
+                        return graph.xScale(d[0]);
+                    })
+                    .y(function (d) {
+                        return graph.yScale(d[1]);
+                    });
+
+                // add line
+                graph.append('path')
+                    .attr('d', line(data))
+                    .attr('stroke', colors(i));
+            });
           }, 200); // renderTimeout
         };
       }
