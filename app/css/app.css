@@ -4890,13 +4890,18 @@ th.hide-for-touch {
     fill: none;
     shape-rendering: auto; }
 
-.bars .chart d3-bar-chart {
+.pie .chart d3-pie-chart {
   height: 300px;
-  width: 300px;
+  width: 600px;
   display: block; }
 
 body {
   background: #eeeeee; }
+
+.line-chart-desc {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  font-weight: 900; }
 
 .settings-panel {
   background: #fff;
