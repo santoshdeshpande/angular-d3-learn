@@ -12,18 +12,19 @@ define([
     return {
       restrict: 'E',
       scope: {
-        bars: '=',
+        bars: '='
       },
       link: function (scope, ele, attrs) {
         var renderTimeout;
-        var dimensions = { margins: { top: 10, right: 20, bottom: 10, left: 40 } };
+        var dimensions = { margins: { top: 10, right: 20, bottom: 50, left: 40 } };
 
         var svg = new Chart(ele[0], dimensions);
 
         var x = d3.scale.ordinal().rangeRoundBands([0, svg.width()], .1);
         var y = d3.scale.linear().range([svg.height(), 0]);
+        var colors = d3.scale.category10();
         var yAxis = d3.svg.axis().scale(y).orient('left');
-
+        var xAxis = d3.svg.axis().scale(x).orient("bottom");
         scope.$watch('bars', function (newBars) {
           if (newBars != null) scope.render(newBars);
         }, true);
@@ -35,6 +36,9 @@ define([
           if (renderTimeout) $timeout.cancel(renderTimeout);
 
           renderTimeout = $timeout(function () {
+              var min = d3.min(data, function(d){return d[1]});
+              var max = d3.max(data, function(d){return d[1]});
+              var median = (min+max)/2.0;
             x.domain(data.map(function (d) { return d[0] }));
             y.domain([0, d3.max(data, function (d) { return d[1] })]);
 
@@ -48,6 +52,16 @@ define([
             svg.append('g')
                   .attr('class', 'y axis')
                   .call(yAxis);
+
+            svg.append('g')
+                  .attr('class', 'x axis')
+                    .attr("transform", "translate(0," + svg.height() + ")")
+                  .call(xAxis)
+                .selectAll('text')
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", ".15em")
+                .attr("transform", function(d){return "rotate(-25)"});
 
             var barContainers = svg.selectAll('.bar')
                   .data(data)
@@ -69,13 +83,29 @@ define([
               .attr('x', function(d) { return x(d[0]); })
               .attr('width', x.rangeBand())
               .attr('y', function(d) { return y(d[1]); })
+                .attr('fill', colors)
               .attr('height', function(d) { return svg.height() - y(d[1]) });
 
-            var barValueLabel = svg.append('g')
-                .attr('transform', 'translate(' + svg.width() / 2 + ', 10)')
-              .append('text')
-                .attr('class', 'bar-value-label')
-                .style('text-anchor', 'middle');
+//            var barValueLabel = svg.append('g')
+//                .attr('transform', 'translate(' + svg.width() / 2 + ', 10)')
+//              .append('text')
+//                .attr('class', 'bar-value-label')
+//                .style('text-anchor', 'middle');
+
+            var medianPosition = y(median);
+            var line = svg.append('line')
+                .attr('x1', 0)
+                .attr('y1', svg.height())
+                .attr('x2', svg.width())
+                .attr('y2', svg.height())
+                .attr('stroke-width', 3)
+                .attr('stroke','red');
+
+            line.transition()
+                .duration(500)
+                .attr('y1', medianPosition)
+                .attr('y2', medianPosition)
+
 
           }, 200); // renderTimeout
         };
