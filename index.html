@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="app/css/app.css" />
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     <script src="app/bower_components/modernizr/modernizr.js"></script>
   </head>
   <body>
     <div class="row">
       <div class="large-12 columns">
         <h1>Dashboard</h1>
-        <ul>
-        <li><a ui-sref="dashboard">Dashboard</a></li>
-        <li><a ui-sref="bars">Bars</a></li>
-        <li><a ui-sref="lines">Lines</a></li>
-        <li><a ui-sref="pies">Pies</a></li>
+        <ul class="sub-nav">
+        <li ui-sref-active="active" ><a ui-sref="dashboard">Dashboard</a></li>
+        <li ui-sref-active="active" ><a ui-sref="bars">Bars</a></li>
+        <li ui-sref-active="active" ><a ui-sref="lines">Lines</a></li>
+        <li ui-sref-active="active" ><a ui-sref="pies">Pies</a></li>
         </ul>
       </div>
     </div>

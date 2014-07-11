@@ -40,7 +40,7 @@ body {
   color: #222;
   padding: 0;
   margin: 0;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Droid Sans', sans-serif;
   font-weight: normal;
   font-style: normal;
   line-height: 1;
@@ -892,7 +892,7 @@ select {
       color: #222;
       padding: 1.33333rem;
       display: block;
-      font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-family: 'Droid Sans', sans-serif;
       font-size: 1.33333rem; }
       .accordion .accordion-navigation > a:hover, .accordion dd > a:hover {
         background: #e3e3e3; }
@@ -1280,7 +1280,7 @@ button, .button {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Droid Sans', sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.66667rem;
@@ -2500,7 +2500,7 @@ div.icon-bar {
 
 .label {
   font-weight: normal;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Droid Sans', sans-serif;
   text-align: center;
   text-decoration: none;
   line-height: 1;
@@ -2867,7 +2867,7 @@ ul.pagination {
     color: #eee;
     font-weight: normal;
     font-size: 1.33333rem;
-    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+    font-family: 'Droid Sans', sans-serif; }
   .pricing-table .price {
     background-color: #f6f6f6;
     padding: 1.25rem 1.66667rem;
@@ -2875,7 +2875,7 @@ ul.pagination {
     color: #333;
     font-weight: normal;
     font-size: 2.66667rem;
-    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+    font-family: 'Droid Sans', sans-serif; }
   .pricing-table .description {
     background-color: #fff;
     padding: 1.25rem;
@@ -3113,7 +3113,7 @@ dialog[open] {
   padding: 1.16667rem 0;
   list-style-type: none;
   list-style-position: outside;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+  font-family: 'Droid Sans', sans-serif; }
   .side-nav li {
     margin: 0 0 0.58333rem 0;
     font-size: 1.16667rem; }
@@ -3128,7 +3128,7 @@ dialog[open] {
     .side-nav li.active > a:first-child:not(.button) {
       color: #1ccaff;
       font-weight: normal;
-      font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+      font-family: 'Droid Sans', sans-serif; }
     .side-nav li.divider {
       border-top: 1px solid;
       height: 0;
@@ -3234,7 +3234,7 @@ dialog[open] {
     display: inline;
     margin-left: 1.33333rem;
     margin-bottom: 0.83333rem;
-    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-family: 'Droid Sans', sans-serif;
     font-weight: normal;
     font-size: 1.16667rem;
     color: #999; }
@@ -3515,7 +3515,7 @@ p {
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Droid Sans', sans-serif;
   font-weight: normal;
   font-style: normal;
   color: #222;
@@ -3763,7 +3763,7 @@ blockquote, blockquote p {
       background: #efefef;
       color: #222;
       padding: 1.33333rem 2.66667rem;
-      font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-family: 'Droid Sans', sans-serif;
       font-size: 1.33333rem; }
       .tabs dd > a:hover, .tabs .tab-title > a:hover {
         background: #e1e1e1; }
@@ -4049,7 +4049,7 @@ meta.foundation-mq-topbar {
       color: #fff;
       padding: 12px 0 12px 0;
       padding-left: 15px;
-      font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-family: 'Droid Sans', sans-serif;
       font-size: 1.08333rem;
       font-weight: normal;
       text-transform: none; }
@@ -4894,3 +4894,51 @@ th.hide-for-touch {
   height: 300px;
   width: 300px;
   display: block; }
+
+body {
+  background: #eeeeee; }
+
+.settings-panel {
+  background: #fff;
+  padding: 10px; }
+  .settings-panel h2 {
+    color: #00A14B; }
+  .settings-panel .grid-item {
+    border-right: 2px solid #00A14B;
+    min-height: 200px; }
+  .settings-panel .description {
+    min-height: 75px; }
+  .settings-panel li:last-child {
+    border-right: none; }
+  .settings-panel select {
+    font-size: 10pt; }
+  .settings-panel .form-header {
+    color: #00A14B;
+    font-size: 14pt; }
+  .settings-panel .button-panel {
+    background: #06a183;
+    background: #ededed;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #ededed 0%, #06a183 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, #ededed), color-stop(100%, #06a183));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #ededed 0%, #06a183 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #ededed 0%, #06a183 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #ededed 0%, #06a183 100%);
+    /* IE10+ */
+    background: linear-gradient(to right, #ededed 0%, #06a183 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#06a183',GradientType=1 );
+    /* IE6-9 */
+    vertical-align: middle;
+    width: 100%;
+    margin: 20px auto 0;
+    border-radius: 5px; }
+    .settings-panel .button-panel .button {
+      margin-top: 18px;
+      background: #00A14B; }
+    .settings-panel .button-panel .alternate {
+      background: #6bddb7; }

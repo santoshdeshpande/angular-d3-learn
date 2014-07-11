@@ -4,3 +4,66 @@
 @import 'bars';
 @import 'lines';
 @import 'pie';
+
+body {
+  background: #eeeeee;
+}
+
+.settings-panel {
+  background: #fff;
+  padding: 10px;
+
+
+  h2 {
+    color: #00A14B;
+  }
+
+  .grid-item {
+    border-right: 2px solid #00A14B;
+    min-height: 200px;
+  }
+
+  .description {
+    min-height: 75px;
+  }
+
+  li:last-child {
+    border-right: none;
+  }
+
+  select {
+    font-size: 10pt;
+  }
+
+  .form-header {
+    color: #00A14B;
+    font-size: 14pt;
+  }
+
+  .button-panel {
+    background: #06a183;
+    background: #ededed; /* Old browsers */
+    background: -moz-linear-gradient(left,  #ededed 0%, #06a183 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ededed), color-stop(100%,#06a183)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #ededed 0%,#06a183 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #ededed 0%,#06a183 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #ededed 0%,#06a183 100%); /* IE10+ */
+    background: linear-gradient(to right,  #ededed 0%,#06a183 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#06a183',GradientType=1 ); /* IE6-9 */
+
+    vertical-align: middle;
+    width: 100%;
+    margin: 20px auto 0;
+    border-radius: 5px;
+
+    .button {
+      margin-top: 18px;
+
+      background: #00A14B;
+    }
+
+    .alternate {
+      background: #6bddb7;
+    }
+  }
+}
