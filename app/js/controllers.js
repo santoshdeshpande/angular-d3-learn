@@ -26,10 +26,8 @@ define(['angular', 'services'], function (angular) {
 			];
 		}])
 		.controller('PiesCtrl', ['$scope', 'Pie', function ( $scope, Pie ) {
-		    $scope.pie = [
-		    	'please load from app/api/v1/pie.json',
-		    	'more details in controller.js#31'
-		    ];
+		    $scope.pie = Pie.query();
+            console.log($scope.pie);
 
 		    // use the Pie resource here (defined in services.js)
 		    // to load the array of pie data and assign it 
@@ -40,7 +38,9 @@ define(['angular', 'services'], function (angular) {
 			$scope.lines = linesData($scope.numberOfLines);
 
 			$scope.updateLineCount = function () {
-			 	alert("implement me");
+                console.log($scope.numberOfLines);
+                $scope.lines = linesData($scope.numberOfLines);
 			}
+
 		}]);
 });
