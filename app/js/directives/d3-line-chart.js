@@ -82,16 +82,17 @@ define([
                             .call(yAxisLeft)
                             .attr('transform', 'translate(-10,0)');
 
+                        var line = d3.svg.line()
+                            .x(function (d) {
+                                return graph.xScale(d[0]);
+                            })
+                            .y(function (d) {
+                                return graph.yScale(d[1]);
+                            });
+
                         angular.forEach(newLines, function (data, i) {
 
                             // create a line function that can convert data[] into x and y points
-                            var line = d3.svg.line()
-                                .x(function (d) {
-                                    return graph.xScale(d[0]);
-                                })
-                                .y(function (d) {
-                                    return graph.yScale(d[1]);
-                                });
 
                             // add line
                             graph.append('path')

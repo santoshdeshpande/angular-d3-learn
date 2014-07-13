@@ -24,6 +24,8 @@ define([
                 };
                 var svg = new Chart(ele[0], dimensions);
                 var radius = Math.min(svg.width(), svg.height()) / 2;
+                var arc = d3.svg.arc().outerRadius(radius-10);
+                var arcOver = d3.svg.arc().outerRadius(radius);
 
                 scope.$watch('pie', function (newPie) {
                     if (newPie != null) scope.render(newPie);
@@ -36,9 +38,24 @@ define([
                     if (renderTimeout) $timeout.cancel(renderTimeout);
 
 
+                    function showText(i) {
+                        var nodeSelection = d3.select("#slice-" + i).transition().duration(100).style({opacity: '0.8'});
+                        nodeSelection.attr('class', 'selected-slice pieSlice');
+                        nodeSelection.select("path").transition().duration(50).attr('d', arcOver);
+                        nodeSelection.select("text").transition().duration(100).style({opacity: '1.0'});
+
+                    }
+
+                    function hideText(i) {
+                        var nodeSelection = d3.select("#slice-" + i).transition().duration(100).style({opacity: '1.0'});
+                        nodeSelection.attr('class', 'pieSlice');
+                        nodeSelection.select("path").transition().duration(200).attr('d', arc);
+                        nodeSelection.select("text").transition().duration(100).style({opacity: '0.0'});
+                    }
+
                     renderTimeout = $timeout(function () {
                         var color = d3.scale.category20();
-                        var arc = d3.svg.arc().outerRadius(radius);
+
                         var pie = d3.layout.pie().value(function (d) {
                             return d.count
                         });
@@ -59,10 +76,14 @@ define([
                         var g = container.selectAll(".pieSlice")
                             .data(pie(data))
                             .enter().append("g")
-                            .attr("class", "pieSlice");
+                            .attr("class", "pieSlice")
+                            .attr('id', function (d, i) {
+                                return "slice-" + i
+                            });
 
                         g.append("path")
                             .attr("d", arc)
+                            .style('cursor', 'pointer')
                             .style("fill", function (d) {
                                 return color(d.value);
                             });
@@ -81,15 +102,9 @@ define([
                                 return value;
                             });
 
-                        g.on('mouseover', function (d) {
-                            var nodeSelection = d3.select(this).style({opacity: '0.8'});
-                            nodeSelection.select("text").style({opacity: '1.0'});
-                        });
+                        g.on('mouseover', function (d, i) { showText(i);});
 
-                        g.on('mouseout', function (d) {
-                            var nodeSelection = d3.select(this).style({opacity: '1.0'});
-                            nodeSelection.select("text").style({opacity: '0.0'});
-                        });
+                        g.on('mouseout', function (d, i) { hideText(i);});
 
                         var legendContainer = svg.append("g")
                             .attr("transform", "translate(0,30)");
@@ -105,18 +120,23 @@ define([
                         legend.append("rect")
                             .attr("width", 18)
                             .attr("height", 18)
+                            .style('cursor', 'pointer')
                             .style("fill", function (d, i) {
                                 return color(d.count);
                             });
+
                         legend.append("text")
                             .attr("y", '13')
                             .attr("dx", "1.5em")
+                            .style('cursor', 'pointer')
                             .text(function (d) {
                                 console.log(d);
                                 return d.bucket
                             })
                             .style({"text-anchor": "start"});
 
+                        legend.on('mouseover', function (d, i) {showText(i);})
+                            .on('mouseout', function (d, i) { hideText(i);})
 
                         console.log(legend);
                     }, 200); // renderTimeout
