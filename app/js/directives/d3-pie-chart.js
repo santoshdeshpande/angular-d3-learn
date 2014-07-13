@@ -54,7 +54,7 @@ define([
                     }
 
                     renderTimeout = $timeout(function () {
-                        var color = d3.scale.category20();
+                        var color = d3.scale.category10();
 
                         var pie = d3.layout.pie().value(function (d) {
                             return d.count
@@ -90,9 +90,11 @@ define([
 
                         g.append("text")
                             .attr("transform", function (d) {
-                                d.innerRadius = 0;
+                                d.innerRadius = radius - 80;
                                 d.outerRadius = radius;
-                                return "translate(" + arc.centroid(d) + ")";
+                                var t =  "translate(" + arc.centroid(d) + ")";
+                                d.innerRadius = 0;
+                                return t;
                             })
                             .attr("dy", ".35em")
                             .style({"text-anchor": "middle", opacity: '0.0'})
