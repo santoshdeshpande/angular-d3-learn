@@ -58,10 +58,11 @@ define([
                     .attr("transform", "translate(0," + svg.height() + ")")
                   .call(xAxis)
                 .selectAll('text')
-                .style("text-anchor", "end")
-                .attr("dx", "-.8em")
-                .attr("dy", ".15em")
-                .attr("transform", function(d){return "rotate(-25)"});
+                .style("text-anchor", "middle")
+                .style('font-size', "6pt")
+                .attr("dx", "-.20em")
+                .attr("dy", "1.20em")
+
 
             var barContainers = svg.selectAll('.bar')
                   .data(data)
@@ -77,6 +78,7 @@ define([
 
             bars.transition()
               .duration( 500 )
+                .ease('elastic')
               .delay( function ( d, i ) {
                  return i * 20;
                })
@@ -95,16 +97,19 @@ define([
             var medianPosition = y(median);
             var line = svg.append('line')
                 .attr('x1', 0)
-                .attr('y1', svg.height())
+                .attr('y1', 0)
                 .attr('x2', svg.width())
-                .attr('y2', svg.height())
+                .attr('y2', 0)
                 .attr('stroke-width', 3)
-                .attr('stroke','red');
+                .attr('stroke','red')
+                .style('opacity', 0.0);
 
             line.transition()
-                .duration(500)
+                .duration(1000)
+                .ease('bounce')
                 .attr('y1', medianPosition)
                 .attr('y2', medianPosition)
+                .style('opacity', 1.0);
 
 
           }, 200); // renderTimeout
